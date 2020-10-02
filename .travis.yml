@@ -12,5 +12,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uchistopat:$BINTRAY_API_KEY "https://api.bintray.com/content/chistopat/otus_cpp_repo/helloworld/0.0.$TRAVIS_BUILD_NUMBER/bin"
+
+    - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uchistopat:$BINTRAY_API_KEY "https://api.bintray.com/content/chistopat/otus_cpp/helloworld/0.0.$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
     
