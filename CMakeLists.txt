@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
 IF(DEFINED ENV{TRAVIS_BUILD_NUMBER})
-    math(EXPR TRAVIS_BUILD_NUMBER_TEMP "$ENV{TRAVIS_BUILD_NUMBER}+1")
-    set(ENV{TRAVIS_BUILD_NUMBER} ${TRAVIS_BUILD_NUMBER_TEMP})
 ELSE()
     set(ENV{TRAVIS_BUILD_NUMBER} 1)
 ENDIF()
@@ -10,7 +8,7 @@ project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-configure_file(src/version.h.in ../src/version.h)
+configure_file(src/version.h.in src/version.h)
 
 add_executable(helloworld_cli src/main.cpp)
 add_library(helloworld src/lib.cpp)
@@ -57,8 +55,6 @@ else ()
             -Wall -Wextra -pedantic -Werror
             )
 endif()
-
-
 
 install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
 
