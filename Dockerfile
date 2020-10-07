@@ -1,9 +1,11 @@
 FROM ubuntu:14.04
-RUN apt-get update
-RUN apt-get install wget -y
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get install wget
 RUN echo "deb http://dl.bintray.com/chistopat/otus_cpp trusty main" | sudo tee -a /etc/apt/sources.list
-RUN wget -O key https://bintray.com/user/downloadSubjectPublicKey?username=chistopat
+RUN wget -qO key https://bintray.com/user/downloadSubjectPublicKey?username=bintray
 RUN apt-key add key
-RUN apt-get update
-RUN apt-get install helloworld -y --force-yes
+RUN apt-get update -qq
+RUN apt-get install helloworld
 RUN helloworld_cli
